@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas Dev and Friends</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+      /* Custom container */
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .container > hr {
+        margin: 60px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 50px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 60px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+      .span12 h2 {
+        font-size: 14px;
+        margin-top: 50px;
+        margin-bottom: 0;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+        padding: 0;
+      }
+      .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+      }
+      .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+      }
+      .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
+      }
+      .top-list .date {
+        color: #aaa;
+        font-size: 10px;
+        display: block;
+        padding-left: 10px;
+      }
+      .top-list .text {
+        padding-left: 10px;
+        height: 16px;
+        font-size: 12px;
+        color: #888;
+        overflow: hidden;
+        display: block;
+      }
+    </style>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="masthead">
+        <h3 class="muted">Canvas Dev and Friends</h3>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="https://canvas.instructure.com/courses/785215">Learn</a></li>
+                <li><a href="http://api.instructure.com">API Docs</a></li>
+                <li><a href="http://www.instructure.com/partners">Partners</a></li>
+                <li><a href="https://lti-examples.heroku.com">Apps</a></li>
+                <li><a href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">Mailing List</a></li>
+                <li><a href="http://webchat.freenode.net/?channels=canvas-lms&uio=d4">IRC</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+      </div>
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Canvas Dev and Friends</h1>
+        <p class="lead">Resources for API development, LTI development and open source development. <br/>Developers developers developers!</p>
+      </div>
+      
+      <div class="row-fluid">
+        <div class="span8">
+          <h2>Recent Messages</h2>
+          <ul id="messages" class="top-list nav nav-pills nav-stacked">
+          </ul>
+          <p><a class="btn" href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">View all messages &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Upcoming Events</h2>
+          <ul id="events" class="top-list nav nav-pills nav-stacked">
+          </ul>
+          <p><a class="btn" href="https://www.google.com/calendar/embed?src=instructure.com_f9og1sg8lstpaihggpuvkdvg58@group.calendar.google.com&ctz=America/Denver&gsessionid=OGl4NmvaO7hRIyJ8JDVAHg">View all events &raquo;</a></p>
+        </div>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span12"><h2>Canvas API</h2></div>
+      </div>
+      <div class="row-fluid">
+        <div class="span4">
+          <h3>Learn API</h3>
+          <p>
+            A good place to start learning is to work through the 
+            <a href="https://canvas.instructure.com/courses/785215">module on APIs </a>
+            in the Canvas Dev course. Still have questions?
+            Join the <a href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">mailing list</a> or ask them in 
+            our <a href="http://webchat.freenode.net/?channels=canvas-lms&uio=d4">IRC channel</a>. 
+          </p>
+        </div>
+        <div class="span4">
+          <h3>API Docs</h3>
+          <p>
+            <a href="http://api.instructure.com">Canvas has API docs</a>. If you're new to them or to working
+            with APIs in general you'll probably want to start with
+            the <a href="https://canvas.instructure.com/courses/785215/wiki/getting-started-with-the-api">getting started page</a> or 
+            <a href="https://canvas.instructure.com/courses/785215/wiki/api-use-case-examples">review the API use cases</a>.
+          </p>
+        </div>
+        <div class="span4">
+          <h3>Dev Key Signup</h3>
+          <p>Before you can use the Canvas API in a production environment you're
+          going to need a developer key. It's easy to request a key, just <a href="mailto:mike@instructure.com">reach
+          out to us</a> with your name, email, and what you're hoping to do with the API.</p>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12"><h2>Canvas and LTI</h2></div>
+      </div>
+      <div class="row-fluid">
+        <div class="span4">
+          <h3>Learn LTI</h3>
+          <p>
+            There's <a href="https://canvas.instructure.com/courses/785215">a module on LTI</a> in the Canvas Dev course, definitely give it
+            a looksie if you're building your first LTI app. Still have questions?
+            Join the <a href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">mailing list</a> or ask them in 
+            our <a href="http://webchat.freenode.net/?channels=canvas-lms&uio=d4">IRC channel</a>. 
+          </p>
+        </div>
+        <div class="span4">
+          <h3>LTI Docs</h3>
+          <p>There are official <a href="http://www.imsglobal.org/lti/">LTI docs</a>, but if you're
+          struggling sort through them, we have <a href="https://lti-examples.heroku.com/code.html">a shorter
+          LTI introduction</a> you can check out to get started. We've
+          collected some <a href="https://canvas.instructure.com/courses/785215/wiki/lti-blog-posts">blog posts on LTI</a> that you may
+          find useful as well.
+          </p>
+        </div>
+        <div class="span4">
+          <h3>Submit an App</h3>
+          <p>
+            Once you've built an LTI app and you're ready to share
+            it with the world, you can <a href="https://lti-examples.heroku.com/suggestions">submit it to our
+            app directory</a>. You can also use that page to suggest 
+            apps you think somebody else should build (maybe, someday).
+          </p>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12"><h2>Canvas Open Source</h2></div>
+      </div>
+      <div class="row-fluid">
+        <div class="span4">
+          <h3>Learn Canvas</h3>
+          <p>
+            If you're running Canvas yourself or considering working on the Canvas codebase, 
+            first check out the <a href="https://github.com/instructure/canvas-lms/wiki">introduction on GitHub</a>.
+            You should also join the <a href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">mailing list</a> or 
+            our <a href="http://webchat.freenode.net/?channels=canvas-lms&uio=d4">IRC channel</a>. Issues? 
+            <a href="https://help.instructure.com">Visit our help portal</a>.
+          </p>
+        </div>
+        <div class="span4">
+          <h3>Github</h3>
+          <p><a href="https://github.com/instructure/canvas-lms">Canvas is released open source</a> under the AGPL
+          license. There's a couple other related libraries you can see 
+          <a href="https://github.com/instructure">on our github site</a>, or check out 
+          <a href="https://canvas.instructure.com/courses/785215/wiki/oss-dev-projects">third-party codebases related to Canvas</a>.
+          </p>
+        </div>
+        <div class="span4">
+          <h3>Contribute</h3>
+          <p>Canvas is dual-licensed, so if you're interested in 
+          contributing to the project you're going to need to send us
+          <a href="https://github.com/instructure/canvas-lms/wiki/ica.pdf">a code contributor agreement</a>. You'll also
+          probably want to review the <a href="https://github.com/instructure/canvas-lms/wiki/Coding-Guidelines">contribution guide</a>.
+          After that it's pull requests ftw!
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>Code licensed under the MIT License. Documentation licensed under CC BY 3.0.</p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    
+    $.ajax({
+      url: "http://pipes.yahoo.com/pipes/pipe.run?_id=675f5a7243c80318cac974759f9859c5&_render=json&feedcount=15&feedurl=http%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2Finstructure.com_f9og1sg8lstpaihggpuvkdvg58%2540group.calendar.google.com%2Fpublic%2Fbasic",
+      jsonp: '_callback',
+      success: function(data) {
+        var events = [];
+        for(var idx = 0; idx < 5 && idx < data.value.items.length; idx++) {
+          var event = data.value.items[idx];
+          event.datestring = event.description.match(/When: ([\w\d\s,:]+)/)[1];
+          event.datestamp = Date.parse(event.datestring.substring(0, 16));
+          if(isFinite(event.datestamp)) {
+            events.push(event);
+          }
+        }
+        events = events.sort(function(a, b) {
+          return a.datestamp - b.datestamp;
+        });
+        var now = (new Date()).getTime();
+        var addedEvents = 0;
+        var html = "";
+        for(var idx = 0; idx < events.length && addedEvents < 5; idx++) {
+          var event = events[idx];
+          if(event.datestamp > now) {
+            console.log(event);
+            addedEvents++;
+            html = html + "<li><a href='" + event.link + "'>" + event.title + "<span class='date'>" + event.datestring + "</span></a></li>";
+          }
+        }
+        $("#events").html(html);
+        
+        console.log(events);
+      },
+      dataType: 'jsonp'
+    });
+    $.ajax({
+      url: "http://pipes.yahoo.com/pipes/pipe.run?_id=3b43d0be27f060f7266d3060ef9c9a5c&_render=json",
+      jsonp: '_callback',
+      success: function(data) {
+        var html = "";
+        for(var idx = 0; idx < 5 && idx < data.value.items.length; idx++) {
+          var entry = data.value.items[idx];
+          var text = $("<div/>").html(entry.description).text().substring(0, 200);
+          html = html + "<li><a href='" + entry.link + "'><span>" + entry.title + "</span><span class='date'>" + entry.pubDate + "</span><span class='text'>" + text + "</span></a></li>";
+        }
+        $("#messages").append(html);
+        console.log(data);
+      },
+      dataType: 'jsonp'
+    });
+    </script>
+  </body>
+</html>
