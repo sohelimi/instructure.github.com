@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Canvas Mobile 2.0 App API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+    body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+    }
+
+    /* Custom container */
+    .container {
+        margin: 0 auto;
+        max-width: 1000px;
+    }
+
+    /* Customize the navbar links to be fill the entire space of the .navbar */
+    .navbar .navbar-inner {
+        padding: 0;
+    }
+    .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+    }
+    .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+    }
+    .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+    }
+    .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
+    }
+    .top-list .date {
+        color: #aaa;
+        font-size: 10px;
+        display: block;
+        padding-left: 10px;
+    }
+    .top-list .text {
+        padding-left: 10px;
+        height: 16px;
+        font-size: 12px;
+        color: #888;
+        overflow: hidden;
+        display: block;
+    }
+    .bio {
+        float: left;
+        text-align: center;
+        margin: 0 10px 20px;
+        width: 160px;
+    }
+    .bio a {
+        color: #888;
+    }
+    </style>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="masthead">
+                <h3 class="muted">Canvas Dev and Friends</h3>
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul class="nav">
+                                <li class="active"><a href="./index.html">Home</a></li>
+                                <li><a href="https://canvas.instructure.com/courses/785215">Learn</a></li>
+                                <li><a href="http://api.instructure.com">API Docs</a></li>
+                                <li><a href="http://www.instructure.com/partners">Partners</a></li>
+                                <li><a href="https://www.edu-apps.org">Apps</a></li>
+                                <li><a href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">Mailing List</a></li>
+                                <li><a href="http://webchat.freenode.net/?channels=canvas-lms&uio=d4">IRC</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!-- /.navbar -->
+            </div>
+
+            <h2>Android and iOS 2.0 Mobile App API Documentation<a class="anchor" id="iOS-and-Android-2.0-Mobile-App-API-Documentation" href="#iOS-and-Android-2.0-Mobile-App-API-Documentation"></a></h2>
+
+            <h3>General notes<a class="anchor" id="General-notes" href="#General-notes"></a></h3>
+
+            <p>In general, the Canvas mobile app APIs follow the same pattern as the online content in Canvas. Often, simply replacing the <code>http://</code> with <code>canvas-courses://</code> will take you to the relevant content inside the mobile apps</p>
+
+            <p>If the user is not currently signed into their mobile app, they'll be redirected to a login page for the given domain.</p>
+
+            <p><strong>Android only</strong>: If the user is already signed into a different domain than the one specified, they'll be redirected to the activity stream and they'll receive a message letting them know they're already signed into a different domain. </p>
+
+            <p><strong>iOS only</strong>: If the user is already signed into a different domain than the one specified, an attempt will be made to load the content. If the user has the same email address registered with multiple school accounts, we can often still load the content correctly.</p>
+
+            <p>Each API endpoint has an icon showing platform compatability. Android:  <img src="img/android.png" /> and iOS: <img src="img/ios.png" />.</p>
+
+            <p>Note: Currently the SpeedGrader app does not support an API.</p>
+
+            <hr /><h3>Login<a class="anchor" id="Login" href="#Login"></a></h3>
+
+            <p>Log the user into the given domain, if not already logged in. <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com     
+            </code></pre>
+
+            <hr /><h3>Announcements<a class="anchor" id="Announcements" href="#Announcements"></a></h3>
+
+            <p>Open the app to a list of announcements for a course:  <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/announcements/
+            </code></pre>
+
+            <p>Open the app to a specific announcement: <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/announcements/:announcementID
+            </code></pre>
+
+            <hr /><h3>Assignments<a class="anchor" id="Assignments" href="#Assignments"></a></h3>
+
+            <p>Open the app to a specific assignment <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code> canvas-courses://example.instructure.com/courses/:courseID/assignments/:assignmentID"    
+            </code></pre>
+
+            <hr /><h3>Conversations<a class="anchor" id="Conversations" href="#Conversations"></a></h3>
+
+            <p>Open the app to the Conversation inbox page page. <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/conversations/      
+            </code></pre>
+
+            <p>Open the app to a specific conversation <img src="img/android.png" /></p>
+
+            <pre><code> canvas-courses://example.instructure.com/conversations/CONVERSATION_ID      
+            </code></pre>
+
+            <hr /><h3>Courses<a class="anchor" id="Courses" href="#Courses"></a></h3>
+
+            <p>Open the app to the list of the user's courses: <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/ 
+            </code></pre>
+
+            <p>Open the app to a specific course home page: <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/
+            </code></pre>
+
+            <hr /><h3>Discussions<a class="anchor" id="Discussions" href="#Discussions"></a></h3>
+
+            <p>Open the app to a list of discussions for a course: <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/discussion_topics/
+            </code></pre>
+
+            <p>Open the app to a specific discussion topic <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code> canvas-courses://example.instructure.com/courses/:courseID/discussion_topics/:topicID    
+                canvas-courses://example.instructure.com/groups/:groupID/discussion_topics/:topicID    
+            </code></pre>
+
+            <hr /><h3>Files<a class="anchor" id="Files" href="#Files"></a></h3>
+
+            <p>Open the app to a specific file <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code> canvas-courses://example.instructure.com/files/:fileID    
+            </code></pre>
+
+            <hr /><h3>Grades<a class="anchor" id="Grades" href="#Grades"></a></h3>
+
+            <p>Open the app to the course grades page:  <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/grades/
+            </code></pre>
+
+            <hr /><h3>Pages<a class="anchor" id="Pages" href="#Pages"></a></h3>
+
+            <p>Open the app to the list of wiki pages: <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/wiki/
+                canvas-courses://example.instructure.com/courses/:courseID/pages/
+            </code></pre>
+
+            <p>Open the app to a specific wiki page: <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code> canvas-courses://example.instructure.com/courses/:courseID/pages/:pageName    
+                canvas-courses://example.instructure.com/courses/:courseID/wiki/:pageName    
+                canvas-courses://example.instructure.com/groups/:groupID/pages/:pageName    
+                canvas-courses://example.instructure.com/groups/:groupID/wiki/:pageName    
+            </code></pre>
+
+            <hr /><h3>People<a class="anchor" id="People" href="#People"></a></h3>
+
+            <p>Open the app to the list of people in a course: <img src="img/android.png" /></p>
+
+            <pre><code>canvas-courses://example.instructure.com/courses/:courseID/people/
+                canvas-courses://example.instructure.com/courses/:courseID/users/
+            </code></pre>
+
+            <hr /><h3>Quizzes<a class="anchor" id="Quizzes" href="#Quizzes"></a></h3>
+
+            <p>Open a specific quiz. <img src="img/android.png" />&nbsp;<img src="img/ios.png" /></p>
+
+            <pre><code> canvas-courses://example.instructure.com/courses/:courseID/quizzes/:quizID    
+            </code></pre>
+      
+            <hr>
+
+            <div class="footer">
+                <p><span style="font-weight: bold;">Last Updated:</span> 28 Jun 2013</p>
+                <p><a href="https://github.com/instructure/instructure.github.com">Code</a> licensed under the MIT License. Documentation licensed under CC BY 3.0.</p>
+            </div>
+
+        </div> <!-- /container -->
+    </body>
+    </html>
